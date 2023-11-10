@@ -30,11 +30,13 @@ class _CarDetailPageState extends State<CarDetailPage> {
   void getData() {
     FirebaseDatabase.instance.ref(widget.carNo).get().then((DataSnapshot data) {
       if (data.exists && data.value != null) {
-        print(data.value);
+        Map temp = data.value as Map;
+        print(temp);
+        print('---------------------------------');
         isAuthorized =
             (data.value as Map)["Authorization"] == "isOn" ? true : false;
-        engineStatus = (data.value as Map)["Engine_Status"];
-        speed = ((data.value as Map)["Gps"])["Speed"];
+        engineStatus = temp['Gps']['Engine_Status'];
+        speed = temp['Gps']['Speed'];
         longitude = ((data.value as Map)["Gps"])["Longitude"];
         latitude = ((data.value as Map)["Gps"])["Latitude"];
         date = ((data.value as Map)["Gps"])["Date"];
