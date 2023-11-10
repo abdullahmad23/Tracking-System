@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "317060008870",
+    "project_id": "cartracking-c9d59",
+    "storage_bucket": "cartracking-c9d59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317060008870:android:a1e1ab219e8fd98cdf1d67",
+        "android_client_info": {
+          "package_name": "com.example.auto_mobile_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuyCmIO5-89JedApeGY7kNvUSwWuWpGpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
