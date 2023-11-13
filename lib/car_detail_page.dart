@@ -31,8 +31,9 @@ class _CarDetailPageState extends State<CarDetailPage> {
     FirebaseDatabase.instance.ref(widget.carNo).get().then((DataSnapshot data) {
       if (data.exists && data.value != null) {
         Map temp = data.value as Map;
-        print(temp);
         print('---------------------------------');
+        print(temp);
+
         isAuthorized =
             (data.value as Map)["Authorization"] == "isOn" ? true : false;
         engineStatus = temp['Gps']['Engine_Status'];
