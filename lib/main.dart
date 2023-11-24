@@ -1,125 +1,120 @@
-// import 'package:auto_mobile_tracker/login.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:flutter/material.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:firebase_database/firebase_database.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'firebase_options.dart';
-
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatefulWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   _MyAppState createState() => _MyAppState();
-// }
-
-// class _MyAppState extends State<MyApp> {
-//   String textValue = 'Hello World !';
-//   FirebaseMessaging? firebaseMessaging = FirebaseMessaging.instance;
-//   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-//       FlutterLocalNotificationsPlugin();
-
-//   @override
-//   void initState() {
-//     super.initState();
-
-//     var android = const AndroidInitializationSettings('mipmap/ic_launcher');
-//     // var ios = IOSInitializationSettings();
-//     var platform = InitializationSettings(
-//       android: android,
-//     );
-//     flutterLocalNotificationsPlugin.initialize(platform);
-
-//     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-//       print('A new onMessageOpenedApp event was published!');
-//       Navigator.push(
-//         context,
-//         MaterialPageRoute(
-//           builder: (context) => const LoginPage(),
-//         ),
-//         // '/message',
-//       );
-//       // arguments: MessageArguments(message, true));
-//     });
-
-//     // firebaseMessaging.requestNotificationPermissions(
-//     //     const IosNotificationSettings(sound: true, alert: true, badge: true));
-//     // firebaseMessaging.onIosSettingsRegistered
-//     //     .listen((IosNotificationSettings setting) {
-//     //   print('IOS Setting Registed');
-//     // });
-//     FirebaseMessaging.instance.getToken().then((token) {
-//       update(token ?? "");
-//     });
-//   }
-
-//   showNotification(Map<String, dynamic> msg) async {
-//     var android = const AndroidNotificationDetails(
-//       'sdffds dsffds',
-//       "CHANNLE NAME",
-//     );
-//     var platform = NotificationDetails(
-//       android: android,
-//     );
-//     await flutterLocalNotificationsPlugin.show(
-//         0, "This is title", "this is demo", platform);
-//   }
-
-//   update(String token) {
-//     DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
-//     databaseReference.child('fcm-token/$token').set({"token": token});
-//     textValue = token;
-//     setState(() {});
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: const Text('Push Notification'),
-//         ),
-//         body: Center(
-//           child: Column(
-//             children: <Widget>[
-//               Text(
-//                 textValue,
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-import 'package:auto_mobile_tracker/components.dart';
-import 'package:auto_mobile_tracker/login.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-Future<void> main() async {
+import 'components.dart';
+import 'mainOld.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Notification App',
+      home: NotificationPage(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class NotificationPage extends StatefulWidget {
+  const NotificationPage({super.key});
+
+  @override
+  _NotificationPageState createState() => _NotificationPageState();
+}
+
+class _NotificationPageState extends State<NotificationPage> {
+  final DatabaseReference _databaseReference =
+      FirebaseDatabase.instance.ref('BB-0456/Gps/Engine_Status');
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  @override
+  void initState() {
+    super.initState();
+    initializeNotifications();
+    listenToChanges();
+  }
+
+  Future<void> initializeNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('mipmap/ic_launcher');
+
+    const InitializationSettings initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
+
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+    );
+  }
+
+  void listenToChanges() {
+    _databaseReference.onValue.listen((DatabaseEvent event) {
+      // Assuming your database structure is like { "value": true }
+      print(event.snapshot.value as bool);
+      bool value = event.snapshot.value as bool;
+
+      if (value) {
+        showOnNotification();
+      } else {
+        showOffNotification();
+      }
+    });
+  }
+
+  Future<void> showOffNotification() async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'your_channel_id',
+      'your_channel_name',
+      // 'your_channel_description',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Car Engine Shutdown',
+      'testing',
+      platformChannelSpecifics,
+      payload: 'item x',
+    );
+  }
+
+  Future<void> showOnNotification() async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'your_channel_id',
+      'your_channel_name',
+      // 'your_channel_description',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      1,
+      'Car Engine Started',
+      'Notification Body',
+      platformChannelSpecifics,
+      payload: 'item x',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -130,66 +125,6 @@ class _MyAppState extends State<MyApp> {
       ),
       // home: const HomePage(),
       home: Splash_Screen(),
-    );
-  }
-}
-
-class Splash_Screen extends StatelessWidget {
-  const Splash_Screen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Color(0xFFFFFFFF),
-        child: Padding(
-          padding: const EdgeInsets.all(60.0),
-          child: SizedBox(
-            height: 800,
-            width: 700,
-            // color: Colors.amber,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 430,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      // borderRadius: BorderRadius.circular(20),
-                      // color: Colors.amber,
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/map.png'),
-                          fit: BoxFit.fill),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 59, 59, 61),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  kbutton(
-                      Rpage: LoginPage(),
-                      BText: "Gets Started !",
-                      CHeight: 50.0,
-                      CWidth: 200.0)
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

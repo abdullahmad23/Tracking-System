@@ -5,9 +5,9 @@ class Noti {
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var androidInitialize =
         const AndroidInitializationSettings('mipmap/ic_launcher');
-    var iOSInitialize = const IOSInitializationSettings();
+    // var iOSInitialize = const IOSInitializationSettings();
     var initializationsSettings =
-        InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+        InitializationSettings(android: androidInitialize, /*iOS: iOSInitialize*/);
     await flutterLocalNotificationsPlugin.initialize(initializationsSettings);
   }
 
@@ -21,14 +21,14 @@ class Noti {
         const AndroidNotificationDetails(
       'you_can_name_it_whatever1',
       'channel_name',
-      'Discussion',
+      // 'Discussion',
       importance: Importance.max,
       priority: Priority.high,
     );
 
     var not = NotificationDetails(
         android: androidPlatformChannelSpecifics,
-        iOS: const IOSNotificationDetails());
+        /*iOS: const IOSNotificationDetails()*/);
     await fln.show(0, title, body, not);
   }
 }

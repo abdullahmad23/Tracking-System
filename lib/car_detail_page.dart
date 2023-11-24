@@ -17,8 +17,8 @@ class CarDetailPage extends StatefulWidget {
 class _CarDetailPageState extends State<CarDetailPage> {
   dynamic speed = 0;
   // final Completer<GoogleMapController> _controller = Completer();
-  bool isAuthorized = true;
-  bool engineStatus = false;
+  bool isAuthorized = false;
+  bool engineStatus = true;
   double latitude = 0;
   double longitude = 0;
   String date = "";
@@ -28,20 +28,20 @@ class _CarDetailPageState extends State<CarDetailPage> {
   CameraPosition? initialPosition;
 
   void getData() {
-    FirebaseDatabase.instance.ref(widget.carNo).get().then((DataSnapshot data) {
-      if (data.exists && data.value != null) {
-        Map temp = data.value as Map;
+    FirebaseDatabase.instance.ref(widget.carNo).onValue.listen((DatabaseEvent data) {
+      if (data.snapshot.exists && data.snapshot.value != null) {
+        Map temp = data.snapshot.value as Map;
         print('---------------------------------');
         print(temp);
 
         isAuthorized =
-            (data.value as Map)["Authorization"] == "isOn" ? true : false;
+        temp["Authorization"] == "isOn" ? true : false;
         engineStatus = temp['Gps']['Engine_Status'];
         speed = temp['Gps']['Speed'];
-        longitude = ((data.value as Map)["Gps"])["Longitude"];
-        latitude = ((data.value as Map)["Gps"])["Latitude"];
-        date = ((data.value as Map)["Gps"])["Date"];
-        time = ((data.value as Map)["Gps"])["Time"];
+        longitude = temp["Gps"]["Longitude"];
+        latitude = temp["Gps"]["Latitude"];
+        date = temp["Gps"]["Date"];
+        time = temp["Gps"]["Time"];
         initialPosition =
             CameraPosition(target: LatLng(latitude, longitude), zoom: 14.0);
         setState(() {});
@@ -138,12 +138,12 @@ class _CarDetailPageState extends State<CarDetailPage> {
               width: 350,
               child: initialPosition != null
                   ? GoogleMap(
-                      initialCameraPosition: initialPosition!,
-                      mapType: MapType.normal,
-                      // onMapCreated: (GoogleMapController controller) {
-                      //   _controller.complete(controller);
-                      // },
-                    )
+                initialCameraPosition: initialPosition!,
+                mapType: MapType.normal,
+                // onMapCreated: (GoogleMapController controller) {
+                //   _controller.complete(controller);
+                // },
+              )
                   : const SizedBox(),
             ),
             SizedBox(
@@ -187,7 +187,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                       Text(
                         "$date $time",
                         style:
-                            const TextStyle(fontSize: 20, color: Colors.grey),
+                        const TextStyle(fontSize: 20, color: Colors.grey),
                       ),
                     ],
                   ),
@@ -204,7 +204,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                       Text(
                         engineStatus ? "ON" : "OFF",
                         style:
-                            const TextStyle(fontSize: 20, color: Colors.grey),
+                        const TextStyle(fontSize: 20, color: Colors.grey),
                       ),
                     ],
                   ),
@@ -229,7 +229,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
             // const SizedBox(height: 24),
             const Padding(
               padding:
-                  EdgeInsets.only(top: 10, bottom: 5, left: 10, right: 300),
+              EdgeInsets.only(top: 10, bottom: 5, left: 10, right: 300),
               child: Text(
                 "Logs",
                 style: TextStyle(
@@ -247,38 +247,38 @@ class _CarDetailPageState extends State<CarDetailPage> {
                       children: [
                         ...logs
                             .map((e) => Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    height: 50,
-                                    width: 300,
-                                    decoration: BoxDecoration(
-                                      color: e["status"]
-                                          ? const Color(0xffCBEAE4)
-                                          : const Color(0xffFF0000),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          e["user_name"] ?? "",
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        Text(
-                                          e["log_time"].toDate().toString(),
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            // fontWeight: FontWeight.w500,
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 50,
+                            width: 300,
+                            decoration: BoxDecoration(
+                              color: e["status"]
+                                  ? const Color(0xffCBEAE4)
+                                  : const Color(0xffFF0000),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  e["user_name"] ?? "",
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                ))
+                                ),
+                                Text(
+                                  e["log_time"].toDate().toString(),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    // fontWeight: FontWeight.w500,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ))
                             .toList(),
                       ],
                     ),
