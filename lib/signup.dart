@@ -29,41 +29,42 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Widget _userSignupView() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 120),
-      child: Container(
-        height: 850,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0x7fCF6F80),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40),
-            topRight: Radius.circular(40),
-          ),
-        ),
-        child: Form(
-          key: _formkey,
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: double.infinity,
+      color: const Color(0x7f00ABE7),
+      // decoration: const BoxDecoration(
+      //   color: kcolor,
+      //   borderRadius: BorderRadius.only(
+      //     topLeft: Radius.circular(40),
+      //     topRight: Radius.circular(40),
+      //   ),
+      // ),
+      child: Form(
+        key: _formkey,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // TOP TEXT
-              Padding(
-                padding: const EdgeInsets.all(10.0),
+              const Padding(
+                padding: EdgeInsets.all(10.0),
                 child: Consttext(
                   ctext: "Register with us !",
                   kfontw: FontWeight.w500,
                   kfonts: 40.0,
-                  kcolor: Colors.black,
+                  kcolor: Colors.white,
                 ),
               ), // TOP TEXT
-              Padding(
-                padding: const EdgeInsets.all(10.0),
+              const Padding(
+                padding: EdgeInsets.all(10.0),
                 child: Consttext(
                   ctext: "Your information safe with us",
                   kfontw: FontWeight.w300,
                   kfonts: 20.0,
-                  kcolor: Colors.black,
+                  kcolor: Colors.white,
                 ),
               ),
               // Name Feild
@@ -101,8 +102,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.email),
-                      suffixIconColor: Color(0x7fCF6F80),
+                      suffixIcon: const Icon(Icons.email),
+                      suffixIconColor: const Color(0x7f00ABE7),
                       hintText: "Email",
                       filled: true,
                       fillColor: Colors.white,
@@ -148,7 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               _isObscure = !_isObscure;
                             });
                           }),
-                      suffixIconColor: Color(0x7fCF6F80),
+                      suffixIconColor: const Color(0x7f00ABE7),
                       hintText: 'Password',
                       filled: true,
                       fillColor: Colors.white,
@@ -193,7 +194,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               _isObscure2 = !_isObscure2;
                             });
                           }),
-                      suffixIconColor: Color(0x7fCF6F80),
+                      suffixIconColor: const Color(0x7f00ABE7),
                       hintText: 'Confirm Password',
                       filled: true,
                       fillColor: Colors.white,
@@ -230,10 +231,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: kcolor,
                       shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: Colors.white, width: 2),
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                     ),
-                    child: const Text("SignUp"),
+                    child: const Text(
+                      "SignUp",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
@@ -241,7 +246,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 padding: const EdgeInsets.only(left: 20),
                 child: Row(
                   children: [
-                    Consttext(
+                    const Consttext(
                         ctext: "If you have an account",
                         kfontw: FontWeight.w500,
                         kfonts: 15.0,
@@ -255,13 +260,13 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         );
                       },
-                      child: Consttext(
+                      child: const Consttext(
                           ctext: "Sign In ",
                           kfontw: FontWeight.w400,
                           kfonts: 15.0,
-                          kcolor: kcolor),
+                          kcolor: Colors.white),
                     ),
-                    Consttext(
+                    const Consttext(
                         ctext: "here!",
                         kfontw: FontWeight.w500,
                         kfonts: 15.0,

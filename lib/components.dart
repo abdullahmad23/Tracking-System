@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-final MaterialColor colors = MaterialColor(
-  0xffCF6F80,
+const MaterialColor colors = MaterialColor(
+  0xff00ABE7,
   <int, Color>{
-    50: Color(0xffCF6F80),
-    100: Color(0xffCF6F80),
-    200: Color(0xffCF6F80),
-    300: Color(0xffCF6F80),
-    400: Color(0xffCF6F80),
-    500: Color(0xffCF6F80),
-    600: Color(0xffCF6F80),
-    700: Color(0xffCF6F80),
-    800: Color(0xffCF6F80),
+    50: Color(0xff00ABE7),
+    100: Color(0xff00ABa8),
+    200: Color(0x7f00ABe7),
+    300: Color(0x5f00ABE7),
+    400: Color(0x2f00ABE7),
+    500: Color(0xff00ABE7),
+    600: Color(0xff00ABE7),
+    700: Color(0xff00ABE7),
+    800: Color(0xff00ABE7),
   },
 );
-final kcolor = Color(0xffCF6F80);
+const kcolor = Color(0x7f00ABE7);
 
 class kbutton extends StatelessWidget {
   final Rpage;
@@ -31,7 +31,7 @@ class kbutton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: CHeight,
       width: CWidth,
       child: ElevatedButton(
@@ -44,10 +44,14 @@ class kbutton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: kcolor,
           shape: RoundedRectangleBorder(
+            side: const BorderSide(color: Colors.white, width: 2),
             borderRadius: BorderRadius.circular(50.0),
           ),
         ),
-        child: Text(BText),
+        child: Text(
+          BText,
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

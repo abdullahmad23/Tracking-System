@@ -108,7 +108,6 @@ import 'package:flutter/material.dart';
 
 import 'main.dart';
 
-
 //
 // Future<void> main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
@@ -148,7 +147,7 @@ class Splash_Screen extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Color(0xFFFFFFFF),
+        color: const Color(0xFFFFFFFF),
         child: Padding(
           padding: const EdgeInsets.all(60.0),
           child: SizedBox(
@@ -162,7 +161,7 @@ class Splash_Screen extends StatelessWidget {
                   Container(
                     height: 430,
                     width: double.infinity,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       // borderRadius: BorderRadius.circular(20),
                       // color: Colors.amber,
                       image: DecorationImage(
@@ -170,21 +169,21 @@ class Splash_Screen extends StatelessWidget {
                           fit: BoxFit.fill),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  Text(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever",
+                  const Text(
+                    "Stay connected to your car like never before! Our Car Tracking System provides real-time location information, putting you in command.",
                     style: TextStyle(
-                      color: const Color.fromARGB(255, 59, 59, 61),
+                      color: Color.fromARGB(255, 59, 59, 61),
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  kbutton(
+                  const kbutton(
                       Rpage: LoginPage(),
                       BText: "Gets Started !",
                       CHeight: 50.0,

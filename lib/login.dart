@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     ProgressLoader().widgetBuilder = null;
 
     await ProgressLoader().show(context);
-    await Future<void>.delayed(Duration(seconds: 2));
+    await Future<void>.delayed(const Duration(seconds: 2));
     await ProgressLoader().dismiss();
   }
 
@@ -34,18 +34,18 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 180),
-          child: Container(
-            height: 850,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Color(0x7fCF6F80),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(40),
-                topRight: Radius.circular(40),
-              ),
-            ),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            color: Color(0x7f00ABE7),
+            // borderRadius: BorderRadius.only(
+            //   topLeft: Radius.circular(40),
+            //   topRight: Radius.circular(40),
+            // ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 50),
             child: Column(
               children: <Widget>[
                 Container(
@@ -59,11 +59,11 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(
                           height: 30,
                         ),
-                        Consttext(
+                        const Consttext(
                           ctext: "Welcome back!",
                           kfontw: FontWeight.w500,
                           kfonts: 40.0,
-                          kcolor: Colors.black,
+                          kcolor: Colors.white,
                         ),
                         const SizedBox(
                           height: 20,
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           height: 130,
                           width: 180,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             // borderRadius: BorderRadius.circular(20),
                             // color: Colors.amber,
                             image: DecorationImage(
@@ -89,8 +89,8 @@ class _LoginPageState extends State<LoginPage> {
                             child: TextFormField(
                               controller: emailController,
                               decoration: InputDecoration(
-                                suffixIcon: Icon(Icons.email),
-                                suffixIconColor: Color(0x7fCF6F80),
+                                suffixIcon: const Icon(Icons.email),
+                                suffixIconColor: const Color(0x7f00ABE7),
                                 hintText: "Email",
                                 filled: true,
                                 fillColor: Colors.white,
@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                                   },
                                 ),
-                                suffixIconColor: Color(0x7fCF6F80),
+                                suffixIconColor: const Color(0x7f00ABE7),
                                 hintText: 'Password',
                                 filled: true,
                                 fillColor: Colors.white,
@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-// Login Button
+                        // Login Button
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SizedBox(
@@ -183,10 +183,15 @@ class _LoginPageState extends State<LoginPage> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: kcolor,
                                 shape: RoundedRectangleBorder(
+                                  side: const BorderSide(
+                                      color: Colors.white, width: 2),
                                   borderRadius: BorderRadius.circular(50.0),
                                 ),
                               ),
-                              child: const Text("Login"),
+                              child: const Text(
+                                "Login",
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
                         ),
@@ -195,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.only(left: 20),
                           child: Row(
                             children: [
-                              Consttext(
+                              const Consttext(
                                   ctext: "If you don't have an account",
                                   kfontw: FontWeight.w500,
                                   kfonts: 15.0,
@@ -209,13 +214,13 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   );
                                 },
-                                child: Consttext(
+                                child: const Consttext(
                                     ctext: "Sign Up",
                                     kfontw: FontWeight.w400,
                                     kfonts: 15.0,
-                                    kcolor: kcolor),
+                                    kcolor: Colors.white),
                               ),
-                              Consttext(
+                              const Consttext(
                                   ctext: "here!",
                                   kfontw: FontWeight.w500,
                                   kfonts: 15.0,

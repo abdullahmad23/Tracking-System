@@ -59,171 +59,218 @@ class _CreateCarState extends State<CreateCar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UserPage()),
-              );
-            },
-            icon: Icon(Icons.arrow_back_ios),
-            color: kcolor,
-          ),
-          title: Consttext(
-              ctext: "User",
-              kfontw: FontWeight.w600,
-              kfonts: 24.0,
-              kcolor: Color(0xffCF6F80))),
+      // appBar: AppBar(
+      //     elevation: 0,
+      //     centerTitle: true,
+      //     backgroundColor: Colors.transparent,
+      //     leading: IconButton(
+      //       onPressed: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(builder: (context) => const UserPage()),
+      //         );
+      //       },
+      //       icon: const Icon(Icons.arrow_back_ios),
+      //       color: kcolor,
+      //     ),
+      //     title: const Consttext(
+      //       ctext: "User",
+      //       kfontw: FontWeight.w600,
+      //       kfonts: 24.0,
+      //       kcolor: Color(0x7f00ABE7),
+      //     )),
       body: Container(
-        margin: EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.only(top: 10),
         width: double.infinity,
         color: Colors.white,
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 50,
-              width: 330,
-              child: TextFormField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  // hintText:
-                  labelText: "Name",
-                  labelStyle: TextStyle(color: Color(0xffCF6F80)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(12.0),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50),
+          child: Column(children: [
+            const Consttext(
+              ctext: "Add New Car",
+              kfontw: FontWeight.w500,
+              kfonts: 24.0,
+              kcolor: kcolor,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 50,
+                width: 330,
+                child: TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    // hintText:
+                    labelText: "Name",
+                    labelStyle: const TextStyle(
+                      color: Color(0x7f00ABE7),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 50,
-              width: 330,
-              child: TextFormField(
-                controller: carNoController,
-                decoration: InputDecoration(
-                  labelText: "Car Number",
-                  labelStyle: TextStyle(color: Color(0xffCF6F80)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 50,
-              width: 330,
-              child: TextFormField(
-                controller: vinNoController,
-                decoration: InputDecoration(
-                  labelText: "Vin Name",
-                  labelStyle: TextStyle(color: Color(0xffCF6F80)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(12.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 50,
+                width: 330,
+                child: TextFormField(
+                  controller: carNoController,
+                  decoration: InputDecoration(
+                    labelText: "Car Number",
+                    labelStyle: const TextStyle(
+                      color: Color(0x7f00ABE7),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 50,
-              width: 330,
-              child: TextFormField(
-                controller: makeController,
-                decoration: InputDecoration(
-                  labelText: "Make",
-                  labelStyle: TextStyle(color: Color(0xffCF6F80)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 50,
-              width: 330,
-              child: TextFormField(
-                controller: colorController,
-                decoration: InputDecoration(
-                  labelText: "Color",
-                  labelStyle: TextStyle(color: Color(0xffCF6F80)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffCF6F80)),
-                    borderRadius: BorderRadius.circular(12.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 50,
+                width: 330,
+                child: TextFormField(
+                  controller: vinNoController,
+                  decoration: InputDecoration(
+                    labelText: "Vin Name",
+                    labelStyle: const TextStyle(
+                      color: Color(0x7f00ABE7),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 40,
-              width: 200,
-              child: ElevatedButton(
-                onPressed: () {
-                  create();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: kcolor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 50,
+                width: 330,
+                child: TextFormField(
+                  controller: makeController,
+                  decoration: InputDecoration(
+                    labelText: "Make",
+                    labelStyle: const TextStyle(
+                      color: Color(0x7f00ABE7),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
                   ),
                 ),
-                child: const Text("Add car"),
               ),
             ),
-          ),
-        ]),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 50,
+                width: 330,
+                child: TextFormField(
+                  controller: colorController,
+                  decoration: InputDecoration(
+                    labelText: "Color",
+                    labelStyle: const TextStyle(
+                      color: Color(0x7f00ABE7),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color(0x7f00ABE7),
+                      ),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 40,
+                width: 200,
+                child: ElevatedButton(
+                  onPressed: () {
+                    create();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kcolor,
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(color: Colors.white, width: 2),
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
+                  ),
+                  child: const Text(
+                    "Add car",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ]),
+        ),
       ),
     );
   }

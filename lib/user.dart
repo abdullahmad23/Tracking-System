@@ -1,4 +1,5 @@
 import 'package:auto_mobile_tracker/components.dart';
+import 'package:auto_mobile_tracker/create_car.dart';
 import 'package:auto_mobile_tracker/login.dart';
 import 'package:auto_mobile_tracker/notifcation.dart';
 import 'package:auto_mobile_tracker/user_home.dart';
@@ -17,7 +18,7 @@ class _UserPageState extends State<UserPage> {
   int selectedIndex = 0;
   List<Widget> widgetOptions = <Widget>[
     const UserHome(),
-    const UserSetting(),
+    const CreateCar(),
   ];
 
   void onItemTapped(int index) {
@@ -51,65 +52,54 @@ class _UserPageState extends State<UserPage> {
         //   color: Colors.black,
         // ),
         centerTitle: true,
-        title: Consttext(
+        title: const Consttext(
             ctext: "Auto Tracking System",
             kfontw: FontWeight.w500,
             kfonts: 20.0,
             kcolor: kcolor),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute(
-        //           builder: (context) => const Notificationss(),
-        //         ),
-        //       );
-        //     },
-        //     icon: Icon(Icons.notifications),
-        //     // iconSize: 10,
-        //     color: Colors.black,
-        //   )
-        // ],
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const UserSetting(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.person),
+            // iconSize: 10,
+            color: Colors.black,
+          )
+        ],
       ),
       body: Center(
         child: widgetOptions.elementAt(selectedIndex),
       ),
-      bottomNavigationBar: Container(
-        height: 60,
-        width: 60,
-        decoration: BoxDecoration(
-          color: Colors.amber,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(40),
-            topRight: Radius.circular(40),
-          ),
-        ),
-        child: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-                backgroundColor: Color(0xffCF6F80),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profile',
-                backgroundColor: Color(0xffCF6F80),
-              ),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.request_page),
-              //   label: 'Request',
-              //   backgroundColor: Colors.yellowAccent,
-              // ),
-            ],
-            type: BottomNavigationBarType.shifting,
-            currentIndex: selectedIndex,
-            selectedItemColor: Colors.white,
-            iconSize: 20,
-            onTap: onItemTapped,
-            elevation: 0),
-      ),
+      bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Color(0x7f00ABE7),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.car_rental),
+              label: 'Add Car',
+              backgroundColor: Color(0x7f00ABE7),
+            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.request_page),
+            //   label: 'Request',
+            //   backgroundColor: Colors.yellowAccent,
+            // ),
+          ],
+          type: BottomNavigationBarType.shifting,
+          currentIndex: selectedIndex,
+          selectedItemColor: Colors.white,
+          iconSize: 20,
+          onTap: onItemTapped,
+          elevation: 0),
     );
   }
 }

@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Notification App',
       home: NotificationPage(),
     );
   }
@@ -124,7 +123,7 @@ class _NotificationPageState extends State<NotificationPage> {
         primarySwatch: colors,
       ),
       // home: const HomePage(),
-      home: Splash_Screen(),
+      home: const Splash_Screen(),
     );
   }
 }
