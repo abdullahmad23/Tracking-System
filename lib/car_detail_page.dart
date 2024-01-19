@@ -148,6 +148,42 @@ class _CarDetailPageState extends State<CarDetailPage> {
                     )
                   : const SizedBox(),
             ),
+             SizedBox(
+              width: 300,
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.map,
+                    size: 40,
+                  ),
+                  Text(
+                    "Latitude: $latitude",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+             SizedBox(
+              width: 300,
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.map,
+                    size: 40,
+                  ),
+                  Text(
+                    "longitude: $longitude",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               width: 300,
               child: Row(
@@ -166,6 +202,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                 ],
               ),
             ),
+            
             Container(
               height: 2,
               width: 350,
@@ -176,7 +213,8 @@ class _CarDetailPageState extends State<CarDetailPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
+       
+                       Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
