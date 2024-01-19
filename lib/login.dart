@@ -1,6 +1,7 @@
 import 'package:auto_mobile_tracker/components.dart';
 import 'package:auto_mobile_tracker/signup.dart';
 import 'package:auto_mobile_tracker/user.dart';
+import 'package:auto_mobile_tracker/user_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,18 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  
+@override
+  void initState() {
+    User? auth=  FirebaseAuth.instance.currentUser;
+    if (auth!=null) {
+      Navigator.of(context).push(MaterialPageRoute(builder: ((context) =>
+        UserHome()
+      )));
+    }
+    super.initState();
+  }
+
   bool _isObscure3 = true;
   final _formkey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
