@@ -22,8 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     User? auth=  FirebaseAuth.instance.currentUser;
     if (auth!=null) {
-      Navigator.of(context).push(MaterialPageRoute(builder: ((context) => UserHome()
-      )));
+    
+    route();
     }
     super.initState();
   }
